@@ -1,4 +1,5 @@
 import Product from "../models/product.model.js";
+import mongoose from "mongoose";
 
 export const getProducts = async (req, res) => {
     try {
@@ -27,6 +28,8 @@ export const getProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
     const product = req.body;
+
+    console.log(product);
 
     if (!product) {
         return res
@@ -75,6 +78,13 @@ export const createProduct = async (req, res) => {
 export const deleteProductById = async (req, res) => {
     const { id } = req.params;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid product ID",
+        });
+    }
+
     if (!id) {
         return res.status(400).json({
             success: false,
@@ -109,6 +119,13 @@ export const deleteProductById = async (req, res) => {
 export const updateProductById = async (req, res) => {
     const { id } = req.params;
     const product = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid product ID",
+        });
+    }
 
     if (!id) {
         return res.status(400).json({
