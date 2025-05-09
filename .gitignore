@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+# Logs
+logs/
+*.log
+# Environment variables
+.env
+# Build output
+dist/
+# Coverage directory used by tools like istanbul and coverage
+coverage/
+# Dependency directories
+node_modules/
+# TypeScript v1 declaration files
+*.d.ts
